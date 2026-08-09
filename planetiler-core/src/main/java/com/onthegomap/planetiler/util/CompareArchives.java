@@ -6,6 +6,7 @@ import com.onthegomap.planetiler.archive.Tile;
 import com.onthegomap.planetiler.archive.TileArchiveConfig;
 import com.onthegomap.planetiler.archive.TileArchives;
 import com.onthegomap.planetiler.archive.TileCompression;
+import com.onthegomap.planetiler.archive.Brotli;
 import com.onthegomap.planetiler.config.Arguments;
 import com.onthegomap.planetiler.config.PlanetilerConfig;
 import com.onthegomap.planetiler.geo.GeometryException;
@@ -428,6 +429,7 @@ public class CompareArchives {
   private byte[] decompress(byte[] bytes, TileCompression tileCompression) throws IOException {
     return switch (tileCompression) {
       case GZIP -> Gzip.gunzip(bytes);
+      case BROTLI -> Brotli.decompress(bytes);
       case NONE -> bytes;
       case UNKNOWN -> throw new FatalComparisonFailure("Unknown compression");
     };

@@ -234,7 +234,7 @@ class PmtilesTest {
   }
 
   @ParameterizedTest
-  @EnumSource(value = TileCompression.class, names = {"GZIP", "NONE"})
+  @EnumSource(value = TileCompression.class, names = {"GZIP", "BROTLI", "NONE"})
   void testRoundtripMetadataMinimal(TileCompression tileCompression) throws IOException {
     roundTripMetadata(
       new TileArchiveMetadata(null, null, null, null, null, null, null, null, null, null, null, Map.of(),

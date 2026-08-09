@@ -181,6 +181,7 @@ public final class WriteablePmtiles implements WriteableTileArchive {
 
       Pmtiles.Compression tileCompression = switch (tileArchiveMetadata.tileCompression()) {
         case GZIP -> Pmtiles.Compression.GZIP;
+        case BROTLI -> Pmtiles.Compression.BROTLI;
         case NONE -> Pmtiles.Compression.NONE;
         default -> Pmtiles.Compression.UNKNOWN;
       };

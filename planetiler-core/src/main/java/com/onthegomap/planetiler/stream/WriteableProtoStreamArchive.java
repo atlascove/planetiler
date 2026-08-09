@@ -90,6 +90,7 @@ public final class WriteableProtoStreamArchive extends WriteableStreamArchive {
     setIfNotNull(metaDataBuilder::setMaxZoom, metadata.maxzoom());
     final StreamArchiveProto.TileCompression tileCompression = switch (metadata.tileCompression()) {
       case GZIP -> StreamArchiveProto.TileCompression.TILE_COMPRESSION_GZIP;
+      case BROTLI -> StreamArchiveProto.TileCompression.TILE_COMPRESSION_BROTLI;
       case NONE -> StreamArchiveProto.TileCompression.TILE_COMPRESSION_NONE;
       case UNKNOWN -> throw new IllegalArgumentException("should not produce \"UNKNOWN\" compression");
     };

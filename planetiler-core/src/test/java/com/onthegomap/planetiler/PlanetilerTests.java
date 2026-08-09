@@ -2683,6 +2683,8 @@ class PlanetilerTests {
   private static TileCompression extractTileCompression(String args) {
     if (args.contains("tile-compression=none")) {
       return TileCompression.NONE;
+    } else if (args.contains("tile-compression=brotli")) {
+      return TileCompression.BROTLI;
     } else if (args.contains("tile-compression=gzip")) {
       return TileCompression.GZIP;
     } else if (args.contains("tile-compression=")) {
@@ -2714,6 +2716,7 @@ class PlanetilerTests {
     "--output-format=files --tile-format=mlt",
     "--tile-compression=none",
     "--tile-compression=gzip",
+    "--tile-compression=brotli",
     "--output-layerstats",
     "--max-point-buffer=1",
     "--osm-test-path=monaco-latest.lz4.osm.pbf",

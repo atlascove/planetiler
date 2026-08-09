@@ -352,6 +352,7 @@ public class TileArchiveWriter {
             };
             bytes = switch (config.tileCompression()) {
               case GZIP -> gzip(encoded);
+              case BROTLI -> Brotli.compress(encoded);
               case NONE -> encoded;
               case UNKNOWN -> throw new IllegalArgumentException("cannot compress \"UNKNOWN\"");
             };

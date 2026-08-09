@@ -19,6 +19,8 @@ public enum TileCompression {
   NONE("none"),
   @JsonProperty("gzip")
   GZIP("gzip"),
+  @JsonProperty("brotli")
+  BROTLI("brotli"),
   @JsonProperty("unknown")
   UNKNOWN("unknown");
 

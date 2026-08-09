@@ -30,7 +30,8 @@ public class Pmtiles {
   public enum Compression {
     UNKNOWN((byte) 0),
     NONE((byte) 1),
-    GZIP((byte) 2);
+    GZIP((byte) 2),
+    BROTLI((byte) 3);
 
     private final byte value;
 

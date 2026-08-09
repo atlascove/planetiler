@@ -21,6 +21,7 @@ import com.onthegomap.planetiler.archive.ReadableTileArchive;
 import com.onthegomap.planetiler.archive.Tile;
 import com.onthegomap.planetiler.archive.TileArchiveMetadata;
 import com.onthegomap.planetiler.archive.TileCompression;
+import com.onthegomap.planetiler.archive.Brotli;
 import com.onthegomap.planetiler.archive.TileFormat;
 import com.onthegomap.planetiler.config.PlanetilerConfig;
 import com.onthegomap.planetiler.geo.GeoUtils;
@@ -285,6 +286,7 @@ public class TestUtils {
     for (var tile : getTiles(db)) {
       var bytes = switch (tileCompression) {
         case GZIP -> gunzip(tile.bytes());
+        case BROTLI -> Brotli.decompress(tile.bytes());
         case NONE -> tile.bytes();
         case UNKNOWN -> throw new IllegalArgumentException("cannot decompress \"UNKNOWN\"");
       };
