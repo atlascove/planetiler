@@ -12,7 +12,7 @@ on:
 jobs:
   sonar:
     name: Analyze with Sonar
-    runs-on: ubuntu-latest
+    runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 15
     steps:
     - uses: actions/checkout@v7
