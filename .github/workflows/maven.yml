@@ -11,6 +11,7 @@ jobs:
   # When spotless:apply fails, the error message is a bit cryptic, so try to make it obvious that
   # is the problem by putting the check into a standalone job
   lint:
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) }}
     name: Check formatting
     runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 15
@@ -28,6 +29,7 @@ jobs:
       run: ./mvnw -DskipTests --batch-mode -no-transfer-progress spotless:check
 
   build:
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) }}
     name: Java ${{ matrix.jdk }} / ${{ matrix.os }} ${{ matrix.args }}
     # Wait until after we check that you ran mvn spotless:apply, otherwise will fail with a cryptic error message
     strategy:
@@ -57,6 +59,7 @@ jobs:
       shell: cmd
 
   examples:
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) }}
     name: Example project
     runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 15
@@ -84,6 +87,7 @@ jobs:
       working-directory: planetiler-examples
 
   run:
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) }}
     name: Build / Run
     runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 15
@@ -129,6 +133,7 @@ jobs:
         SKIP_EXAMPLE_PROJECT: true
 
   quickstart:
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) }}
     name: Quickstart script
     runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 15

@@ -13,7 +13,7 @@ jobs:
   updatepr:
     runs-on: codebuild-fotoshi-gh-planetiler-${{ github.run_id }}-${{ github.run_attempt }}
     continue-on-error: true
-    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ (!startsWith(github.event_name, 'pull_request') || github.event.pull_request.head.repo.full_name == github.repository) && (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success') }}
     timeout-minutes: 5
     steps:
     # report status back to pull request
